@@ -1,31 +1,31 @@
 // src/App.tsx
-import { useState } from "react";
 
 export function App() {
-  // 1. 文字列を管理するState
-  const [inputText, setInputText] = useState<string>("");
+  const tasks = [
+    { id: 1, title: "Reactの復習をする", isDone: true },
+    { id: 2, title: "牛乳を買う", isDone: false },
+    { id: 3, title: "部屋の掃除", isDone: false },
+    { id: 4, title: "家賃の振り込み", isDone: false, isImportant: true },
+  ];
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>React イベントとフォームの学習</h1>
-      {/* 2. 入力欄を設置 */}
-      <div style={{ marginBottom: "20px" }}>
-        <input
-          type="text"
-          placeholder="ここに入力してください"
-          value={inputText} // 👈 入力欄の値をStateと連動させる
-          onChange={(e) => setInputText(e.target.value)} // 👈 文字が変わるたびにStateを更新する
-          style={{ padding: "8px", fontSize: "16px", width: "250px" }}
-        />
-      </div>
-      {/* 3. Stateの値をリアルタイムに画面に表示 */}
-      <p style={{ fontSize: "20px" }}>
-        あなたが入力した文字: <span style={{ color: "blue", fontWeight: "bold" }}>{inputText}</span>
-      </p>
-      //演習課題
-      <p style={{ fontSize: "20px" }}>
-        現在の文字数: <span style={{ color: "red" }}>{inputText.length}</span> 文字
-      </p>
+      <h1>React 繰り返しと条件分岐の学習</h1>
+
+      <h2>今日のタスク一覧</h2>
+      {/* 🌟 2. mapを使って、配列の要素を1つずつ <li> タグに変換する */}
+      <ul>
+        {tasks.map((task) => {
+          return (
+            // 要素を並べるときは、一番外側のタグに「key」が絶対必要！
+            <li key={task.id} style={{ fontSize: "18px", marginBottom: "8px" }}>
+              {task.title} {task.isImportant && "⭐️"}
+              {/* isDone が true なら「✅ 完了」、false なら「🏃‍♂️ 未完了」を表示 */}
+              <span style={{ marginLeft: "10px" }}>{task.isDone ? "✅ 完了" : "🏃‍♂️ 未完了"}</span>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
