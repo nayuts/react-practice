@@ -2,27 +2,30 @@
 import { useState } from "react";
 
 export function App() {
-  // 1. Stateの宣言
-  const [count, setCount] = useState<number>(0);
-
-  // 2. ボタンが押された時の処理（関数）
-  const handleIncrement = () => {
-    setCount(count + 1); // 専用の更新関数を使って、いまのカウントに1を足す
-  };
-  //演習課題
-  const handleDecrement = () => {
-    setCount(count - 1);
-  };
+  // 1. 文字列を管理するState
+  const [inputText, setInputText] = useState<string>("");
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>React Stateの学習</h1>
-      {/* 3. Stateの値を画面に表示（Propsと同じように { } を使います） */}
-      <p style={{ fontSize: "24px" }}>現在のカウント: {count}</p>
-      {/* 4. ボタンを押したら handleIncrement を実行する */}
-      <button onClick={handleIncrement}>カウントアップ</button>
+      <h1>React イベントとフォームの学習</h1>
+      {/* 2. 入力欄を設置 */}
+      <div style={{ marginBottom: "20px" }}>
+        <input
+          type="text"
+          placeholder="ここに入力してください"
+          value={inputText} // 👈 入力欄の値をStateと連動させる
+          onChange={(e) => setInputText(e.target.value)} // 👈 文字が変わるたびにStateを更新する
+          style={{ padding: "8px", fontSize: "16px", width: "250px" }}
+        />
+      </div>
+      {/* 3. Stateの値をリアルタイムに画面に表示 */}
+      <p style={{ fontSize: "20px" }}>
+        あなたが入力した文字: <span style={{ color: "blue", fontWeight: "bold" }}>{inputText}</span>
+      </p>
       //演習課題
-      <button onClick={handleDecrement}>カウントダウン</button>
+      <p style={{ fontSize: "20px" }}>
+        現在の文字数: <span style={{ color: "red" }}>{inputText.length}</span> 文字
+      </p>
     </div>
   );
 }
