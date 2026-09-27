@@ -1,0 +1,26 @@
+/* src/components/ProfileCard.module.css */
+
+/* カード全体のスタイル */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #f9f9f9;
+  width: 300px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 名前のスタイル */
+.name {
+  color: #333;
+  font-size: 20px;
+  margin-top: 0;
+  border-bottom: 2px solid #646cff;
+  padding-bottom: 8px;
+}
+
+.description {
+  color: #666;
+  font-size: 14px;
+}
